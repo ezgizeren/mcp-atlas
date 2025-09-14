@@ -1,0 +1,533 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Server Metadata Schema for Context7 by Upstash",
+  "description": "A comprehensive schema that defines the structure and purpose of the metadata record for an MCP (Malleable Co-Processor) server. This particular record describes the 'Context7' server provided by Upstash, which is designed to provide up-to-date code documentation and examples to AI assistants and code editors.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique, namespaced identifier for the MCP server, typically in the format 'owner/repository'. This serves as the primary key for the server's record."
+    },
+    "metadata_record_created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp indicating when this metadata record was first created in the registry."
+    },
+    "metadata_record_updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp indicating the last time this metadata record was modified."
+    },
+    "metadata_is_active": {
+      "type": "boolean",
+      "description": "A flag indicating whether the MCP server is currently considered active and available for use. Inactive servers may be deprecated or under maintenance."
+    },
+    "mcp_name": {
+      "type": "string",
+      "description": "The human-readable, friendly name of the MCP server, used for display purposes in UIs and logs."
+    },
+    "mcp_description": {
+      "type": "string",
+      "description": "A concise, high-level summary of the MCP server's functionality and what it enables for AI agents or clients."
+    },
+    "mcp_purpose": {
+      "type": "string",
+      "description": "A detailed explanation of the core problem the MCP server solves and its value proposition. This field elaborates on how the server helps AI agents overcome specific limitations, such as accessing real-time, accurate information."
+    },
+    "mcp_server_primary_category": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "The main category that best describes the server's function (e.g., 'Code', 'Data Analysis', 'Finance'). This helps in classifying and discovering servers."
+    },
+    "mcp_server_secondary_categories_json": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "A JSON-encoded string representing an array of supplementary categories. These provide additional context for the server's capabilities. Example content: '[\"documentation\", \"developer_tools\"]'."
+    },
+    "mcp_server_maturity_indicator": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "An indicator of the server's development stage (e.g., 'experimental', 'beta', 'stable'). This helps users gauge its reliability and readiness for production use."
+    },
+    "mcp_integration_complexity_indicator": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "An indicator of the effort required to integrate with this server (e.g., 'trivial', 'moderate', 'complex')."
+    },
+    "app_domain": {
+      "type": "string",
+      "description": "The primary web domain associated with the service or application that the MCP server provides access to."
+    },
+    "app_slug": {
+      "type": "string",
+      "description": "A short, URL-friendly identifier for the application, often used in paths and links."
+    },
+    "app_description": {
+      "type": "string",
+      "description": "A summary of the underlying application or platform that the MCP server interfaces with."
+    },
+    "provider_name": {
+      "type": "string",
+      "description": "The name of the company or individual that created and maintains the MCP server."
+    },
+    "provider_is_official": {
+      "type": "boolean",
+      "description": "A flag indicating whether the server is an official release from the application's provider, as opposed to a third-party or community-developed server."
+    },
+    "meta_source_data_last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "A timestamp indicating the last time the source information used to generate this metadata record was updated."
+    },
+    "meta_declared_license": {
+      "type": "string",
+      "description": "A human-readable string declaring the software license under which the MCP server's code is distributed."
+    },
+    "meta_information_sources": {
+      "type": "string",
+      "description": "A description of the sources from which this metadata was compiled, providing transparency about its origin."
+    },
+    "mcp_server_type_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of supported transport protocols for the MCP server. Common values include 'LOCAL_STDIO', 'HTTP_STREAM', etc. Example content: '[\"LOCAL_STDIO\"]'."
+    },
+    "mcp_features_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of key features or capabilities of the server, presented as a list of strings."
+    },
+    "mcp_requirements_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of technical prerequisites for running or using the MCP server, such as runtime versions or required client software."
+    },
+    "tools_overview_description": {
+      "type": "string",
+      "description": "A narrative overview of the server's available tools, explaining their collective purpose, design philosophy, and how they should be used together to achieve the server's main goal."
+    },
+    "tools_count": {
+      "type": "integer",
+      "description": "The total number of distinct tools exposed by the MCP server."
+    },
+    "tools_distinct_categories_count": {
+      "type": "integer",
+      "description": "The number of unique functional categories that the server's tools fall into."
+    },
+    "tools_definitions_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of tool definition objects. This is the core of the server's functional specification, detailing each available tool. Each object in the array should contain:\n- 'name': (string) The programmatic name of the tool.\n- 'desc': (string) A detailed description of the tool's purpose and usage guidelines for an AI agent.\n- 'func_type': (string) The category of function, e.g., 'SEARCH_QUERY', 'DATA_READ'.\n- 'risk_score': (integer) A numerical score indicating the potential risk of using the tool.\n- 'friendly_name': (string) A human-readable name for the tool.\n- 'mapped_category': (array of strings) The functional categories this tool belongs to.\n- 'args_schema': (object) A JSON schema defining the arguments the tool accepts. Each key is an argument name, and the value is an object specifying its 'type', 'required' status, and 'description'.\n- 'output_schema': (object) A JSON schema defining the structure of the data returned by the tool upon successful execution."
+    },
+    "repo_platform": {
+      "type": "string",
+      "description": "The platform where the server's source code repository is hosted, e.g., 'GitHub', 'GitLab'."
+    },
+    "repo_owner_login": {
+      "type": "string",
+      "description": "The username or organization name of the repository owner on the hosting platform."
+    },
+    "repo_owner_avatar_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to the avatar image of the repository owner."
+    },
+    "repo_full_name": {
+      "type": "string",
+      "description": "The complete name of the repository, including the owner and repository name, e.g., 'upstash/context7'."
+    },
+    "repo_stargazers_count": {
+      "type": "integer",
+      "description": "The number of users who have starred the repository, often used as a measure of popularity."
+    },
+    "repo_watchers_count": {
+      "type": "integer",
+      "description": "The number of users watching the repository for notifications on activity."
+    },
+    "repo_forks_count": {
+      "type": "integer",
+      "description": "The number of times the repository has been forked by other users."
+    },
+    "repo_primary_language": {
+      "type": "string",
+      "description": "The main programming language used in the repository, as detected by the hosting platform."
+    },
+    "repo_description": {
+      "type": "string",
+      "description": "The description of the source code repository, as set on the hosting platform."
+    },
+    "repo_html_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The public URL to the main page of the source code repository."
+    },
+    "repo_license_name": {
+      "type": "string",
+      "description": "The human-readable name of the license associated with the repository, e.g., 'MIT License'."
+    },
+    "repo_license_spdx_id": {
+      "type": "string",
+      "description": "The SPDX identifier for the repository's license, providing a machine-readable license type, e.g., 'MIT'."
+    },
+    "repo_topics_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of topics or keywords associated with the repository, used for discovery and categorization."
+    },
+    "repo_created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp indicating when the source code repository was created."
+    },
+    "repo_updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp indicating the last time any metadata or activity occurred on the repository."
+    },
+    "repo_last_push_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp of the most recent push of code to the repository, indicating development activity."
+    },
+    "repo_open_issues_count": {
+      "type": "integer",
+      "description": "The number of currently open issues in the repository's issue tracker."
+    },
+    "repo_has_issues_enabled": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository's issue tracker feature is enabled."
+    },
+    "repo_has_projects_enabled": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository's projects (kanban boards) feature is enabled."
+    },
+    "repo_has_wiki_enabled": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository's wiki feature is enabled."
+    },
+    "repo_has_discussions_enabled": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository's discussions feature is enabled."
+    },
+    "repo_is_archived": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository has been archived and is now read-only."
+    },
+    "repo_is_disabled": {
+      "type": "boolean",
+      "description": "A flag indicating whether the repository has been disabled, usually due to a terms of service violation or other issue."
+    },
+    "repo_file_tree_text": {
+      "type": "string",
+      "description": "A multi-line string that provides a textual representation of the repository's file and directory structure, giving a quick overview of the codebase organization."
+    },
+    "mcp_env_vars_info_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of objects that describe the environment variables used to configure the server. Each object details a variable's name, purpose, type, default value, and whether it's required or sensitive."
+    },
+    "mcp_general_notes_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of general notes, tips, or important considerations for users of the MCP server."
+    },
+    "dev_debug_methods_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of recommended methods and steps for debugging the server, providing practical advice for developers."
+    },
+    "dev_support_channels_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of official support channels, such as links to issue trackers, forums, or community pages."
+    },
+    "dev_contribution_guidelines_url_or_text": {
+      "type": "string",
+      "description": "A string containing either a URL to a detailed contribution guide (e.g., CONTRIBUTING.md) or the guidelines themselves, outlining how developers can contribute to the project."
+    },
+    "security_compliance_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of statements regarding the server's security and compliance posture."
+    },
+    "security_auth_methods_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of supported authentication methods. For public servers, this may state that no authentication is required."
+    },
+    "security_data_privacy_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of statements about the server's data privacy practices, such as what data is stored or transmitted."
+    },
+    "security_best_practices_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of recommended security best practices for users or administrators of the server."
+    },
+    "examples_use_cases_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of objects that describe common use cases for the server. Each object typically includes a sample user prompt, the tools involved, a name for the use case, and a description of the action flow."
+    },
+    "examples_workflows_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of objects that illustrate complete workflows. This often includes a 'before' and 'after' description to highlight the benefits of using the server, along with a step-by-step breakdown of the improved process."
+    },
+    "examples_recipes_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of objects that provide step-by-step 'recipes' for achieving a specific objective. Each recipe details a sequence of tool calls with example arguments and explains the expected outcome."
+    },
+    "examples_playground_snippets_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of objects containing small, testable snippets. These are designed for quick experimentation and verification of a tool's behavior, often including a sample input and an expected output."
+    },
+    "meta_miscellaneous_details_json": {
+      "type": "string",
+      "description": "A JSON-encoded string representing an array of miscellaneous notes, disclaimers, or other important details that do not fit into other categories."
+    },
+    "scoring": {
+      "type": "array",
+      "description": "An array of scoring objects, where each object represents an evaluation of the server against a specific quality criterion. This provides a structured assessment of the server's design, security, and documentation.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "criterion_id": {
+            "type": "string",
+            "description": "A unique identifier for the evaluation criterion."
+          },
+          "criterion_name": {
+            "type": "string",
+            "description": "The human-readable name of the evaluation criterion."
+          },
+          "evaluation_strategy": {
+            "type": "string",
+            "description": "A description of the methodology used to evaluate the server against this criterion."
+          },
+          "observations": {
+            "type": "array",
+            "description": "A list of specific findings and observations made during the evaluation.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "aspect_evaluated": {
+                  "type": "string",
+                  "description": "The specific feature or aspect of the server that was examined."
+                },
+                "finding": {
+                  "type": "string",
+                  "description": "The detailed finding or result of the examination for this aspect."
+                },
+                "evidence_source": {
+                  "type": "string",
+                  "description": "The source of evidence within the server's metadata or code that supports the finding."
+                },
+                "impact_on_score": {
+                  "type": "string",
+                  "description": "The qualitative impact of this finding on the final score (e.g., 'Strongly Positive', 'Negative')."
+                },
+                "recommendation_for_improvement": {
+                  "type": "string",
+                  "description": "A suggestion for how this aspect could be improved."
+                }
+              },
+              "required": [
+                "aspect_evaluated",
+                "finding",
+                "evidence_source",
+                "impact_on_score",
+                "recommendation_for_improvement"
+              ]
+            }
+          },
+          "rationale": {
+            "type": "string",
+            "description": "A summary of the reasoning that connects the observations to the final score for this criterion."
+          },
+          "scoring": {
+            "type": "object",
+            "description": "An object containing the detailed scoring breakdown for this criterion.",
+            "properties": {
+              "final_score": {
+                "type": "number",
+                "description": "The final numerical score for this criterion."
+              },
+              "score_interpretation": {
+                "type": "string",
+                "description": "A qualitative interpretation of the final score (e.g., 'Excellent', 'Poor')."
+              },
+              "scoring_summary": {
+                "type": "string",
+                "description": "A brief summary explaining why the server received its score for this criterion."
+              },
+              "calculation_breakdown": {
+                "type": "string",
+                "description": "An optional field explaining how the final score was calculated from its components."
+              },
+              "components": {
+                "type": "array",
+                "description": "A breakdown of the final score into weighted sub-components.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the scoring sub-component."
+                    },
+                    "score": {
+                      "type": "number",
+                      "description": "The score for this specific sub-component."
+                    },
+                    "max_score": {
+                      "type": "integer",
+                      "description": "The maximum possible score for this sub-component."
+                    },
+                    "weight": {
+                      "type": "number",
+                      "description": "The weighting factor applied to this sub-component's score."
+                    },
+                    "weighted_score": {
+                      "type": "number",
+                      "description": "The final weighted score for this sub-component."
+                    },
+                    "justification": {
+                      "type": "string",
+                      "description": "A brief justification for the score given to this sub-component."
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "score",
+                    "max_score",
+                    "weight",
+                    "weighted_score",
+                    "justification"
+                  ]
+                }
+              },
+              "red_flags": {
+                "type": "array",
+                "description": "A list of critical issues or major flaws identified during the evaluation.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "A short, machine-readable code for the red flag."
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "A detailed description of the red flag issue."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "description"
+                  ]
+                }
+              },
+              "positive_indicators": {
+                "type": "array",
+                "description": "A list of particularly noteworthy strengths or best practices identified during the evaluation.",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string",
+                      "description": "A description of the positive indicator."
+                    },
+                    "impact": {
+                      "type": "string",
+                      "description": "An explanation of why this indicator is beneficial."
+                    }
+                  },
+                  "required": [
+                    "description",
+                    "impact"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "final_score",
+              "score_interpretation",
+              "scoring_summary",
+              "components",
+              "red_flags",
+              "positive_indicators"
+            ]
+          }
+        },
+        "required": [
+          "criterion_id",
+          "criterion_name",
+          "evaluation_strategy",
+          "observations",
+          "rationale",
+          "scoring"
+        ]
+      }
+    }
+  },
+  "required": [
+    "id",
+    "metadata_record_created_at",
+    "metadata_record_updated_at",
+    "metadata_is_active",
+    "mcp_name",
+    "mcp_description",
+    "mcp_purpose",
+    "mcp_server_primary_category",
+    "mcp_server_secondary_categories_json",
+    "mcp_server_maturity_indicator",
+    "mcp_integration_complexity_indicator",
+    "app_domain",
+    "app_slug",
+    "app_description",
+    "provider_name",
+    "provider_is_official",
+    "meta_source_data_last_updated",
+    "meta_declared_license",
+    "meta_information_sources",
+    "mcp_server_type_json",
+    "mcp_features_json",
+    "mcp_requirements_json",
+    "tools_overview_description",
+    "tools_count",
+    "tools_distinct_categories_count",
+    "tools_definitions_json",
+    "repo_platform",
+    "repo_owner_login",
+    "repo_owner_avatar_url",
+    "repo_full_name",
+    "repo_stargazers_count",
+    "repo_watchers_count",
+    "repo_forks_count",
+    "repo_primary_language",
+    "repo_description",
+    "repo_html_url",
+    "repo_license_name",
+    "repo_license_spdx_id",
+    "repo_topics_json",
+    "repo_created_at",
+    "repo_updated_at",
+    "repo_last_push_at",
+    "repo_open_issues_count",
+    "repo_has_issues_enabled",
+    "repo_has_projects_enabled",
+    "repo_has_wiki_enabled",
+    "repo_has_discussions_enabled",
+    "repo_is_archived",
+    "repo_is_disabled",
+    "repo_file_tree_text",
+    "mcp_env_vars_info_json",
+    "mcp_general_notes_json",
+    "dev_debug_methods_json",
+    "dev_support_channels_json",
+    "dev_contribution_guidelines_url_or_text",
+    "security_compliance_json",
+    "security_auth_methods_json",
+    "security_data_privacy_json",
+    "security_best_practices_json",
+    "examples_use_cases_json",
+    "examples_workflows_json",
+    "examples_recipes_json",
+    "examples_playground_snippets_json",
+    "meta_miscellaneous_details_json",
+    "scoring"
+  ]
+}
